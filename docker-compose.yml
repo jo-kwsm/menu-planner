@@ -33,6 +33,9 @@ services:
       - type: volume
         source: mysql_volume
         target: /var/lib/mysql
+      - type: bind
+        source: ./mysql/initdb.d
+        target: /docker-entrypoint-initdb.d
 
 volumes:
   mysql_volume:

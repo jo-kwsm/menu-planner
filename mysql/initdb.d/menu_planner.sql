@@ -1,4 +1,4 @@
-DROP DATABASE menu_planner;
+DROP DATABASE IF EXISTS menu_planner;
 CREATE DATABASE menu_planner;
 USE menu_planner;
 
