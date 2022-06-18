@@ -26,7 +26,7 @@ CREATE TABLE menu
 (
     menu_id SERIAL PRIMARY KEY,
     menu_name varchar(30) UNIQUE,
-    calorie INT,
+    calorie INT DEFAULT 0,
     burden_id INT,
     CONSTRAINT menu_burden_fk FOREIGN KEY (burden_id) REFERENCES burden(burden_id)
 );
