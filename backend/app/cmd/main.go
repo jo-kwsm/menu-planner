@@ -16,5 +16,5 @@ func main() {
 		menuRouter.DELETE("/", controller.MenuDelete)
 	}
 
-	router.Run(":5000")
+	router.Run(":8080")
 }

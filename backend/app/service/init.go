@@ -15,7 +15,7 @@ func init() {
 	var err error
 
 	drivername := "mysql"
-	dsn := fmt.Sprintf("%s:%s@(127.0.0.1:3306)/%s", os.Getenv("MYSQL_USER"), os.Getenv("MYSQL_PASSWORD"), os.Getenv("MYSQL_DATABASE"))
+	dsn := fmt.Sprintf("%s:%s@(db:3306)/%s?charset=utf8", os.Getenv("MYSQL_USER"), os.Getenv("MYSQL_PASSWORD"), os.Getenv("MYSQL_DATABASE"))
 
 	Db, err = sql.Open(drivername, dsn)
 
