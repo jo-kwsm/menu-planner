@@ -8,13 +8,7 @@ import (
 func main() {
 	router := gin.Default()
 
-	menuRouter := router.Group("menu")
-	{
-		menuRouter.POST("/", controller.MenuAdd)
-		menuRouter.GET("/", controller.MenuList)
-		menuRouter.PUT("/", controller.MenuUpdate)
-		menuRouter.DELETE("/", controller.MenuDelete)
-	}
+	router.GET("/menu", controller.MenuList)
 
 	router.Run(":8080")
 }

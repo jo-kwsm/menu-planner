@@ -8,10 +8,6 @@ import (
 	"github.com/jo-kwsm/menu-planner/service"
 )
 
-func MenuAdd(c *gin.Context) {
-
-}
-
 func MenuList(c *gin.Context) {
 	menuService := service.MenuService{}
 	MenuLists, err := menuService.GetMenuList()
@@ -20,16 +16,5 @@ func MenuList(c *gin.Context) {
 		log.Print(err)
 	}
 
-	c.JSONP(http.StatusOK, gin.H{
-		"message": "ok",
-		"data":    MenuLists,
-	})
-}
-
-func MenuUpdate(c *gin.Context) {
-
-}
-
-func MenuDelete(c *gin.Context) {
-
+	c.JSONP(http.StatusOK, MenuLists)
 }

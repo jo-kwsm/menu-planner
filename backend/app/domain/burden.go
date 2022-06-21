@@ -1,4 +1,4 @@
-package model
+package domain
 
 type Burden struct {
 	BurdenId   int64  `json:"burdenId" form:"burdenId"`

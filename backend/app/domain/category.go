@@ -1,4 +1,4 @@
-package model
+package domain
 
 type Category struct {
 	CategoryId   int64  `json:"categoryId" form:"categoryId"`
