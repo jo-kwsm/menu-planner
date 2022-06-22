@@ -9,7 +9,9 @@ import (
 type MenuRepository struct{}
 
 func (MenuRepository) List() ([]domain.Menu, error) {
-	sql := `SELECT menu_id, menu_name, calorie, burden_id FROM menu`
+	sql := `SELECT m.menu_id, m.menu_name, m.calorie, m.burden_id, b.burden_name
+	FROM menu m
+	JOIN burden b ON m.burden_id = b.burden_id`
 
 	rows, err := Db.Query(sql)
 	if err != nil {
@@ -21,20 +23,21 @@ func (MenuRepository) List() ([]domain.Menu, error) {
 
 	for rows.Next() {
 		var (
-			menuId, burdenId  int64
-			menuName, calorie string
+			menuId, burdenId, calorie int64
+			menuName, burdenName      string
 		)
 
-		err = rows.Scan(&menuId, &menuName, &calorie, &burdenId)
+		err = rows.Scan(&menuId, &menuName, &calorie, &burdenId, &burdenName)
 		if err != nil {
 			return nil, err
 		}
 
 		menus = append(menus, domain.Menu{
-			MenuId:   menuId,
-			MenuName: menuName,
-			Calorie:  calorie,
-			BurdenId: burdenId,
+			MenuId:     menuId,
+			MenuName:   menuName,
+			Calorie:    calorie,
+			BurdenId:   burdenId,
+			BurdenName: burdenName,
 		})
 	}
 
@@ -45,9 +48,10 @@ type RecipeRepository struct{}
 
 func (RecipeRepository) List(menuId int64) ([]domain.Recipe, error) {
 	sql := fmt.Sprintf(
-		`SELECT r.ingredient_id, r.num, i.ingredient_name, i.category_id
+		`SELECT r.ingredient_id, r.num, i.ingredient_name, i.category_id, c.category_name
 		FROM recipe r
-		join ingredient i on r.ingredient_id = i.ingredient_id
+		JOIN ingredient i ON r.ingredient_id = i.ingredient_id
+		JOIN category c on i.category_id = c.category_id
 		where menu_id=%d`,
 		menuId)
 
@@ -62,10 +66,10 @@ func (RecipeRepository) List(menuId int64) ([]domain.Recipe, error) {
 	for rows.Next() {
 		var (
 			ingredientId, num, categoryId int64
-			ingredientNmae                string
+			ingredientNmae, categoryName  string
 		)
 
-		err = rows.Scan(&ingredientId, &num, &ingredientNmae, &categoryId)
+		err = rows.Scan(&ingredientId, &num, &ingredientNmae, &categoryId, &categoryName)
 		if err != nil {
 			return nil, err
 		}
@@ -75,6 +79,7 @@ func (RecipeRepository) List(menuId int64) ([]domain.Recipe, error) {
 				IngredientId:   ingredientId,
 				IngredientName: ingredientNmae,
 				CategoryId:     categoryId,
+				CategoryName:   categoryName,
 			},
 			Num: num,
 		})
