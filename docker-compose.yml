@@ -1,8 +1,24 @@
 version: '3.8'
 
 services:
+  frontend:
+    container_name: menu-planner-frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    command: npm start
+    tty: true
+    ports:
+      - 3000:3000
+    depends_on:
+      - go
+    volumes:
+      - type: bind
+        source: ./frontend/app
+        target: /usr/src/app
+
   go:
-    container_name: go
+    container_name: menu-planner-go
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -20,7 +36,7 @@ services:
         target: /go/src
 
   db:
-    container_name: db
+    container_name: menu-planner-db
     build:
       context: ./mysql
       dockerfile: Dockerfile
