@@ -56,4 +56,4 @@ services:
 
 volumes:
   mysql_volume:
-    name: mysql_volume
+    name: menu-planner-volume

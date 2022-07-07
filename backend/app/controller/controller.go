@@ -16,5 +16,6 @@ func MenuList(c *gin.Context) {
 		log.Print(err)
 	}
 
+	c.Writer.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
 	c.JSONP(http.StatusOK, MenuLists)
 }
