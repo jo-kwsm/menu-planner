@@ -1,8 +1,8 @@
 package service
 
 import (
-	"github.com/jo-kwsm/menu-planner/domain"
-	"github.com/jo-kwsm/menu-planner/repository"
+	"menu-planner/domain"
+	"menu-planner/repository"
 )
 
 type MenuService struct{}
