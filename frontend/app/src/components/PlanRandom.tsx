@@ -9,14 +9,14 @@ const omitText = (text: string): string => {
   return text
 }
 
-export const MenuRandom = () => {
+export const PlanRandom = () => {
   const { plans, setPlans } = useContext(PlanContext)
 
   useEffect(() => {
     client.get('menu/random').then(({ data }) => {
       setPlans(data)
+      console.log(data)
     })
-    console.log(plans)
   }, [])
 
   return (
