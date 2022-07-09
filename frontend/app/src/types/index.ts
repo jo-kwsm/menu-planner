@@ -6,3 +6,8 @@ export interface MenuType {
   burdenName: string
   // recipe:
 }
+
+export interface PlanType {
+  lunch: MenuType
+  dinner: MenuType
+}
