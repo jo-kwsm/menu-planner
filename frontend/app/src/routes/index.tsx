@@ -5,8 +5,8 @@ import { RandomPage} from '../pages/randomPage'
 export const AppRouter = () => {
   return (
     <Routes>
-      <Route path="/list" element={<ListPage />}></Route>
-      <Route path="/random" element={<RandomPage />}></Route>
+      <Route path="/list" element={<ListPage />} />
+      <Route path="/random" element={<RandomPage />} />
     </Routes>
   )
 }

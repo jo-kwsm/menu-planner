@@ -19,7 +19,7 @@ func MenuList(c *gin.Context) {
 		log.Print(err)
 	}
 
-	c.JSONP(http.StatusOK, MenuLists)
+	c.JSON(http.StatusOK, MenuLists)
 }
 
 func MenuRandom(c *gin.Context) {
