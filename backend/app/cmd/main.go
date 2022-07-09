@@ -1,6 +1,9 @@
 package main
 
 import (
+	"time"
+
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/jo-kwsm/menu-planner/controller"
 )
@@ -8,7 +11,34 @@ import (
 func main() {
 	router := gin.Default()
 
-	router.GET("/menu", controller.MenuList)
+	router.Use(cors.New(cors.Config{
+		AllowOrigins: []string{
+			"http://localhost:3000",
+			"http://localhost:8080",
+		},
+		AllowMethods: []string{
+			"POST",
+			"GET",
+			"OPTIONS",
+		},
+		AllowHeaders: []string{
+			"Access-Control-Allow-Credentials",
+			"Access-Control-Allow-Headers",
+			"Access-Control-Allow-Origin",
+			"Content-Type",
+			"Content-Length",
+			"Accept-Encoding",
+			"Authorization",
+		},
+		AllowCredentials: true,
+		MaxAge:           24 * time.Hour,
+	}))
+
+	menuRouter := router.Group("/menu")
+	{
+		menuRouter.GET("", controller.MenuList)
+		menuRouter.GET("/random", controller.MenuRandom)
+	}
 
 	router.Run(":8080")
 }
