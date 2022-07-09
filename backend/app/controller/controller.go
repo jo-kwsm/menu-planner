@@ -35,10 +35,11 @@ func MenuRandom(c *gin.Context) {
 		dinnerIndex = rand.Intn(len(MenuRandoms))
 	}
 
-	MenuRandom := domain.Plan{
+	MenuRandom := make([]domain.Plan, 0)
+	MenuRandom = append(MenuRandom, domain.Plan{
 		Lunch:  MenuRandoms[lunchIndex],
 		Dinner: MenuRandoms[dinnerIndex],
-	}
+	})
 
 	c.JSON(http.StatusOK, MenuRandom)
 }
