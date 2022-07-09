@@ -1,10 +1,10 @@
 import { Routes, Route } from 'react-router-dom'
-import { Dashboard } from '../pages/dashboard'
+import { ListPage } from '../pages/listPage'
 
 export const AppRouter = () => {
   return (
     <Routes>
-      <Route path="/" element={<Dashboard />}></Route>
+      <Route path="/list" element={<ListPage />}></Route>
     </Routes>
   )
 }

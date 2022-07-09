@@ -17,7 +17,7 @@ export const MenuList = () => {
       setMenus(data)
     })
     console.log(menus)
-  }, [])
+  })
 
   return (
     <div className="p-4 border border-gray-200 rounded shadow-lg">
