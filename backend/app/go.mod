@@ -1,4 +1,4 @@
-module github.com/jo-kwsm/menu-planner
+module menu-planner
 
 go 1.18
 

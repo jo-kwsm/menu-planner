@@ -3,7 +3,7 @@ package repository
 import (
 	"fmt"
 
-	"github.com/jo-kwsm/menu-planner/domain"
+	"menu-planner/domain"
 )
 
 type MenuRepository struct{}

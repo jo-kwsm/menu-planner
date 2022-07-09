@@ -5,9 +5,10 @@ import (
 	"math/rand"
 	"net/http"
 
+	"menu-planner/domain"
+	"menu-planner/service"
+
 	"github.com/gin-gonic/gin"
-	"github.com/jo-kwsm/menu-planner/domain"
-	"github.com/jo-kwsm/menu-planner/service"
 )
 
 func MenuList(c *gin.Context) {
